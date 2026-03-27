@@ -1,7 +1,6 @@
 :root {
     --primary-orange: #FF8E6E; 
-    --bg-yellow: #FFF9C4;     
-    --text-orange: #FF7043;
+    --bg-yellow: #FFF9C4;
 }
 
 * {
@@ -11,15 +10,16 @@
 }
 
 body {
-    background-color: #f0f0f0;
+    background-color: #FFF9C4;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: 'Rubik', 'Kanit', sans-serif;
+    font-family: 'Rubik';
 }
 
-/* จำลองหน้าจอมือถือ */
+.hidden { display: none !important; }
+
 .mobile-screen {
     width: 375px;
     height: 667px;
@@ -28,90 +28,95 @@ body {
     border-radius: 40px;
     position: relative;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
-/* พื้นหลังที่มีไอเทมจางๆ */
 .bg-items {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); /* ตัวอย่างลวดลาย */
+    background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
     opacity: 0.1;
-    z-index: 1;
+    z-index: 0;
 }
 
-.logo-container {
-    width: 600px; /* ปรับขนาดตามต้องการ */
-    height: auto;
-    /* border: 1px solid rgba(110, 0, 255, 0.2); */
+/* [1] หัวข้อ */
+.header-area {
+    position: absolute;
+    top: 140px;
+    width: 100%;
+    z-index: 10;
 }
 
 .goalie-text {
-    fill: #FF8E6E; 
-    
+    fill: var(--primary-orange);
+    font-size: 70px;
     filter: 
-        drop-shadow(4px 6px 0px #812c2c);
+        drop-shadow(5px 5px 0px #812c2c);
 }
 
-/* ส่วนแสดงตะกร้าและเหรียญ */
-.main-visual {
-    position: relative;
-    width: 200px;  /* กำหนดความกว้าง */
-    height: 150px; /* กำหนดความสูง เพื่อกันที่ไว้ให้รูปภาพ */
-    margin-top: 20px;
-}
-
-.basket {
+/* [2] ตะกร้าและเหรียญ */
+.visual-area {
     position: absolute;
-    width: 200px;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2; /* ให้ตะกร้าอยู่ข้างหน้าเหรียญ 1-3 */
+    top: 240px;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    z-index: 5;
 }
 
+.basket-img {
+    width: 250px;
+    position: absolute;
+    bottom: 1;
+    z-index: 8;
+}
+
+/* เหรียญ */
 .coin-1 { 
     position: absolute;
-    width: 80px;
+    width: 90px;
     z-index: 0;
-    top: 30px; 
-    left: 40px; 
+    top: -5px; 
+    left: 110px; 
     transform: rotate(-20deg); 
 }
 
 .coin-2 { 
     position: absolute;
-    width: 90px;
+    width: 100px;
     z-index: 2;
-    top: 15px; 
-    left: 70px; 
+    top: -20px; 
+    left: 150px; 
     transform: rotate(30deg); 
 }
 
 .coin-3 { 
     position: absolute;
-    width: 50px;
+    width: 60px;
     z-index: 1;
-    top: 15px; 
-    left: 60px; 
+    top: -20px; 
+    left: 130px; 
     transform: rotate(-30deg); 
 }
 
-
-/* ดาว 5 ดวงสีเหลืองทอง */
-.rating-stars {
+/* [3] ดาว */
+.star {
+    position: absolute;
+    top: 450px; /* ขยับขึ้นลงที่นี่ */
+    width: 100%;
+    text-align: center;
     color: #FFD700;
-    font-size: 35px;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    top: 70px;
+    font-size: 40px;
+    z-index: 5;
 }
 
-/* ปุ่ม LET'S GO */
+/* [4] ปุ่ม  */
 .btn-start {
+    position: absolute;
+    bottom: 80px; /* ล็อคตำแหน่งไว้ที่ขอบล่าง */
+    left: 65px;
     background-color: var(--primary-orange);
     color: white;
     border: none;
@@ -120,12 +125,75 @@ body {
     font-weight: bold;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 8px 0px #E57373; /* เงาปุ่มแบบ 3D */
+    box-shadow: 0 8px 0px #E57373;
     transition: all 0.1s;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Rubik';
+    z-index: 5;
 }
 
 .btn-start:active {
+    transform: translate(0%, 10px);
+    box-shadow: 0 4px 0px #d46342;
+}
+
+/* --- ส่วนหัวข้อหน้า 2 --- */
+.header-area-s2 {
+    position: absolute;
+    top: 120px; /* ขยับขึ้น-ลง ตรงนี้ */
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+.title-s2 {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 900;
+    font-size: 42px; /* ปรับขนาดความใหญ่ตรงนี้ */
+    color: var(--primary-orange);
+    line-height: 1.1;
+    margin-bottom: 5px;
+    filter: 
+        drop-shadow(4px 4px 0px #812c2c);
+}
+
+/* --- กลุ่มปุ่มตัวเลือก --- */
+.button-group {
+    position: absolute;
+    top: 320px; /* ขยับกลุ่มปุ่มขึ้น-ลง ตรงนี้ */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; /* ระยะห่างระหว่างปุ่มบนกับล่าง */
+    z-index: 10;
+}
+
+.btn-choice {
+    background-color: var(--primary-orange);
+    color: white;
+    border: none;
+    width: 220px; /* ความกว้างของปุ่ม */
+    height: 100px; /* ความสูงของปุ่ม */
+    border-radius: 35px; /* ความโค้งมนตามรูป */
+    font-family: 'Rubik', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 1.2;
+    cursor: pointer;
+    box-shadow: 0 6px 0px #d46342; /* เงา 3D */
+    transition: all 0.1s;
+}
+
+.btn-choice:active {
     transform: translateY(4px);
-    box-shadow: 0 4px 0px #E57373;
+    box-shadow: 0 2px 0px #d46342;
+}
+
+/* เพิ่มเติม: ปรับปรุงหน้าจอ Screen ให้ทับกันพอดี */
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
 }
