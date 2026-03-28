@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GOALIE - Start Scene</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@900&family=Kanit:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@900&family=Mitr:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="mobile-screen">
-        <div class="bg-items"></div>
+    <button id="lang-switch" class="lang-button">TH</button>
+
+    <div class="bg-items"></div>
 
      <div id="start-scene" class="screen">
         <div class="header-area">
@@ -36,26 +38,48 @@
         <div class="star">
             <span> ★ </span><span> ★ </span><span> ★ </span><span> ★ </span><span> ★ </span>
         </div> 
-             <button id="btn-go" class="btn-start">LET'S GO</button>
+             <button id="btn-go" class="btn-start" data-th="เริ่มกันเลย" data-en="LET'S GO">LET'S GO</button>
     </div>
+        </div>
 
-        <div id="setup-scene" class="hidden">
-    <div class="bg-items"></div>
-
-    <div class="header-area-s2">
-        <h1 class="title-s2">CALCULATING</h1>
-        <h1 class="title-s2">SETUP!</h1>
+    <div id="setup-scene" class="screen hidden">
+        <div class="header-area-s2">
+            <h1 class="title-s2" data-th="เลือกวิธี" data-en="CALCULATING">CALCULATING</h1>
+            <h1 class="title-s2" data-th="การคำนวณเงิน" data-en="SETUP!">SETUP!</h1>
+        </div>
+        <div class="button-group">
+            <button class="btn-choice" data-th="คำนวณเอง" data-en="I've got this">I've got this</button>
+            <button id="btn-auto" class="btn-choice" data-th="ให้เราช่วยนะ" data-en="Leave it to us">Leave it to us</button>
+        </div>
     </div>
+ 
+    <div id="auto-scene" class="screen hidden">
+        <div class="content-wrapper">
+        <h1 class="title-auto" data-th="ให้เราช่วยนะ" data-en="Leave it to us">Leave it to us</h1>
 
-    <div class="button-group">
-        <button class="btn-choice" id="btn-manual">
-            I've got<br>this
-        </button>
+        <div class="input-card">
+            <label class="input-label" data-th="สิ่งที่อยากได้" data-en="Enter what you want">Enter what you want</label>
+            <input type="text" class="input-field" data-th-ph="กรุณาระบุ..." data-en-ph="Enter your..." placeholder="Enter your...">
+
+            <label class="input-label" data-th="ราคา" data-en="Enter the prices">Enter the prices</label>
+            <input type="number" class="input-field" data-th-ph="กรุณาระบุราคา..." data-en-ph="Enter price..." placeholder="Enter your...">
+
+            <label class="input-label" data-th="รายได้หลัก" data-en="Enter your income">Enter your income</label>
+            <input type="number" class="input-field" data-th-ph="กรุณาระบุรายได้..." data-en-ph="Enter income..." placeholder="Enter your...">
+
+            <label class="input-label" data-th="รายได้เสริม" data-en="Enter side income">Enter side income</label>
+            <input type="number" class="input-field" data-th-ph="กรุณาระบุรายได้เสริม..." data-en-ph="Enter side income..." placeholder="Enter your...">
+
+            <label class="input-label" data-th="จำนวนเดือน" data-en="Number of months">Number of months</label>
+            <select id="month-select" class="input-field select-style">
+                </select>
+
+            <button class="btn-calculate" id="btn-calc-action" data-th="คำนวณ" data-en="Calculate">Calculate</button>
+        </div>
         
-        <button class="btn-choice" id="btn-auto">
-            Leave it<br>to us
-        </button>
+        <div style="height: 60px;"></div>
     </div>
+</div>
 </div>
 
     <script src="script.js"></script>

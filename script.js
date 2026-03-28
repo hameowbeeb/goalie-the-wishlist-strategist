@@ -1,26 +1,54 @@
-// ฟังก์ชันนี้จะทำงานก็ต่อเมื่อหน้าเว็บโหลดเสร็จแล้ว
 document.addEventListener('DOMContentLoaded', function() {
+    
+    const langBtn = document.getElementById('lang-switch');
+    const btnGo = document.getElementById('btn-go');
+    const startScene = document.getElementById('start-scene');
+    const setupScene = document.getElementById('setup-scene');
+    
+    let currentLang = 'en';
 
-    // 1. ประกาศตัวแปรเพื่อไปจับ Element ใน HTML
-    const btnGo = document.querySelector('.btn-start'); // จับปุ่ม LET'S GO
-    const startScene = document.getElementById('start-scene'); // จับหน้าแรก
-    const setupScene = document.getElementById('setup-scene'); // จับหน้าสอง
-
-    // 2. สร้างฟังก์ชันสำหรับการสลับหน้าจอ
     function switchPage() {
-        // เติม class .hidden ให้หน้าแรก (เพื่อซ่อน)
         startScene.classList.add('hidden');
-        
-        // ดึง class .hidden ออกจากหน้าสอง (เพื่อแสดงผล)
         setupScene.classList.remove('hidden');
-        
-        console.log("สลับหน้าจอเรียบร้อยแล้ว!");
     }
 
-    // 3. สั่งให้ปุ่ม "ฟัง" เหตุการณ์การคลิก (Event Listener)
-    // เมื่อมีการคลิกที่ btnGo ให้ไปเรียกใช้ฟังก์ชัน switchPage
-    if (btnGo) {
-        btnGo.addEventListener('click', switchPage);
+    function changeLanguage() {
+    // 1. สลับค่าภาษาปัจจุบันก่อน
+    if (currentLang === 'en') {
+        currentLang = 'th';
+    } else {
+        currentLang = 'en';
     }
+
+    // 2. อัปเดตตัวอักษรบนปุ่มเปลี่ยนภาษา (หาทุกปุ่มที่มีคลาส .lang-button)
+    const allLangBtns = document.querySelectorAll('.lang-button');
+    allLangBtns.forEach(function(btn) {
+        // ถ้าหน้าจอเป็น th ปุ่มต้องโชว์ EN (เพื่อกดสลับกลับ)
+        btn.innerText = (currentLang === 'th') ? 'EN' : 'TH';
+    });
+
+    // 3. กวาดหา Element ทั้งหมดที่มี data-th เพื่อเปลี่ยนเนื้อหา
+    const elements = document.querySelectorAll('[data-th]');
+    
+    elements.forEach(function(el) {
+        const isTh = (currentLang === 'th');
+        
+        // เปลี่ยนข้อความหลัก
+        el.innerText = isTh ? el.getAttribute('data-th') : el.getAttribute('data-en');
+        
+        // สลับฟอนต์
+        el.style.fontFamily = isTh ? "'Mitr', sans-serif" : "'Rubik', sans-serif";
+
+        // --- ส่วนที่เพิ่มมาใหม่: เปลี่ยน Placeholder ในช่อง Input ---
+        if (el.hasAttribute('data-th-ph')) {
+            el.placeholder = isTh ? el.getAttribute('data-th-ph') : el.getAttribute('data-en-ph');
+        }
+    });
+
+    console.log("สลับภาษาเสร็จแล้ว เป็น: " + currentLang);
+}
+
+    if (btnGo) { btnGo.addEventListener('click', switchPage); }
+    if (langBtn) { langBtn.addEventListener('click', changeLanguage); }
 
 });

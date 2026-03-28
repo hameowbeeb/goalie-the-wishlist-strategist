@@ -104,7 +104,7 @@ body {
 /* [3] ดาว */
 .star {
     position: absolute;
-    top: 450px; /* ขยับขึ้นลงที่นี่ */
+    top: 460px; /* ขยับขึ้นลงที่นี่ */
     width: 100%;
     text-align: center;
     color: #FFD700;
@@ -115,24 +115,31 @@ body {
 /* [4] ปุ่ม  */
 .btn-start {
     position: absolute;
-    bottom: 80px; /* ล็อคตำแหน่งไว้ที่ขอบล่าง */
-    left: 65px;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: var(--primary-orange);
     color: white;
     border: none;
-    padding: 15px 60px;
+    
+    /* ล็อคความกว้างขั้นต่ำไว้ กรอบจะได้ไม่หดหรือขยายตามความยาวตัวอักษร */
+    min-width: 220px; 
+    padding: 15px 30px;
+    
+    /* ล็อคความหนาของตัวอักษรไว้ที่นี่ที่เดียว */
+    font-weight: 900 !important; 
+    
     font-size: 24px;
-    font-weight: bold;
     border-radius: 50px;
     cursor: pointer;
     box-shadow: 0 8px 0px #E57373;
     transition: all 0.1s;
-    font-family: 'Rubik';
     z-index: 5;
+    white-space: nowrap;
 }
 
 .btn-start:active {
-    transform: translate(0%, 10px);
+    transform: translate(-50%, 4px);
     box-shadow: 0 4px 0px #d46342;
 }
 
@@ -197,3 +204,61 @@ body {
     top: 0;
     left: 0;
 }
+
+.lang-button {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    z-index: 100; /* ให้ลอยทับทุกอย่าง */
+    background-color: #FF8E6E; /* สีส้มตามรูป */
+    color: #FFF9C4;           /* สีตัวอักษรเหลืองนวล */
+    border: none;
+    border-radius: 12px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    
+    /* เส้นขอบในสีเหลืองนวล (นี่คือจุดสำคัญที่ทำให้เหมือนรูปเป๊ะ) */
+    box-shadow: inset 0 0 0 3px #FFF9C4; 
+    
+    transition: all 0.1s;
+}
+
+/* เอฟเฟกต์ตอนกดให้ปุ่มยุบลง */
+.lang-button:active {
+    transform: scale(0.9);
+}
+.lang-button {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    z-index: 100;
+    
+    /* สีและขอบตามดีไซน์ที่คุณต้องการ */
+    background-color: #FF8E6E; 
+    color: #FFF9C4;
+    border: 3px solid #FF8E6E; /* ขอบส้มด้านนอก */
+    box-shadow: inset 0 0 0 3px #FFF9C4; /* ขอบเหลืองนวลด้านใน */
+    
+    /* ล็อคขนาดให้คงที่ */
+    width: 65px;
+    height: 45px;
+    border-radius: 12px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.lang-button:active {
+    transform: scale(0.95);
+}
+
